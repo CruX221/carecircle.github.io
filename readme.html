@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareCompanion AI - Pitch Deck</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --accent-blue: #38bdf8;
+      --accent-green: #22c55e;
+      --accent-yellow: #eab308;
+      --accent-red: #ef4444;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-color: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Deck Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border-color);
+      background-color: rgba(15, 23, 42, 0.9);
+    }
+
+    .brand {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .slide-counter {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* Presentation Viewport */
+    .deck-container {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      max-width: 1000px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--accent-blue);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: var(--text-main);
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1.25rem;
+    }
+
+    .card h3 {
+      color: var(--accent-blue);
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Data Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.95rem;
+    }
+
+    th {
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--accent-blue);
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .badge-green { background: rgba(34, 197, 94, 0.2); color: var(--accent-green); }
+    .badge-yellow { background: rgba(234, 179, 8, 0.2); color: var(--accent-yellow); }
+    .badge-orange { background: rgba(249, 115, 22, 0.2); color: #f97316; }
+    .badge-red { background: rgba(239, 68, 68, 0.2); color: var(--accent-red); }
+
+    /* Navigation Controls */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-top: 1px solid var(--border-color);
+      background-color: rgba(15, 23, 42, 0.9);
+    }
+
+    .btn {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background: var(--accent-blue);
+      color: #000;
+    }
+
+    .btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand"><span>🤖</span> CareCompanion AI</div>
+    <div class="slide-counter" id="slide-counter">Slide 1 of 8</div>
+  </header>
+
+  <main class="deck-container">
+
+    <!-- Slide 1: Title -->
+    <section class="slide active">
+      <h1>CareCompanion AI</h1>
+      <p class="subtitle">Autonomous AI Caregiver for Chronic Disease Management</p>
+      <div class="grid-2">
+        <div class="card">
+          3️⃣ <strong>The Gap:</strong> Solitary seniors and aging parents living away from adult children face unmonitored medical risks and treatment fatigue.
+        </div>
+        <div class="card">
+          💡 <strong>The Innovation:</strong> Outbound PSTN voice calls in cloned familiar voices, wearable biometrics, and automated e-pharmacy wallet fulfillment.
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 2: Problem -->
+    <section class="slide">
+      <h2>The Problem: Solitary Chronic Care Crisis</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>50%+ Non-Adherence</h3>
+          <p>Chronic disease patients routinely skip medication, diet, or physiotherapy routines due to isolation, fatigue, or cognitive decline.</p>
+        </div>
+        <div class="card">
+          <h3>Unseen Biometric Anomalies</h3>
+          <p>Gradual drops in blood oxygen, glucose spikes, or sleep disruption go unnoticed until they lead to acute hospitalizations.</p>
+        </div>
+        <div class="card">
+          <h3>Friction in Fulfillment</h3>
+          <p>Elderly patients struggle to navigate smartphone apps to order refills, causing frequent medication stockouts.</p>
+        </div>
+        <div class="card">
+          <h3>Geographic Caregiver Distance</h3>
+          <p>Adult children living in other cities or countries lack real-time visibility and proactive emergency intervention tools.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: Solution -->
+    <section class="slide">
+      <h2>The Solution: 24/7 Digital Caregiver</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>🗣️ Voice-First Engagement</h3>
+          <p>Autonomous PSTN calls in regional languages using cloned voices of loved ones. No smartphone app navigation required.</p>
+        </div>
+        <div class="card">
+          <h3>⌚ Wearable Fusion</h3>
+          <p>Continuous data streaming from Apple Health, Google Connect, or CGMs with baseline outlier detection.</p>
+        </div>
+        <div class="card">
+          <h3>💊 Auto-Pharmacy Wallet</h3>
+          <p>Predictive pill burn forecasting and dynamic auto-ordering via MedPlus, Tata 1mg, and Apollo Pharmacy.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 4: Escalation Matrix -->
+    <section class="slide">
+      <h2>Clinical Triage & Escalation Matrix</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>Trigger Condition</th>
+            <th>Automated AI Action</th>
+            <th>Alert Target</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-green">Green</span></td>
+            <td>Normal biometrics & voice confirmation</td>
+            <td>Log routine activity & update weekly report</td>
+            <td>Family Dashboard</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-yellow">Yellow</span></td>
+            <td>Missed 1 check-in call / mild low mood</td>
+            <td>Retry call in 30m with encouraging voice nudge</td>
+            <td>Patient Phone</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-orange">Orange</span></td>
+            <td>24hr non-compliance / biometric outlier</td>
+            <td>Generate clinical report & dispatch escalation alert</td>
+            <td>Doctor & Family</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-red">Red</span></td>
+            <td>Distress keyword ("Fallen", "Help") / crash</td>
+            <td>Trigger immediate emergency call & dispatch</td>
+            <td>Physician & EMS</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Slide 5: Technical Stack -->
+    <section class="slide">
+      <h2>Architecture & Tech Stack</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Telephony & AI Voice</h3>
+          <p>Twilio / Exotel PSTN voice gateway paired with ElevenLabs low-latency custom voice synthesis engine.</p>
+        </div>
+        <div class="card">
+          <h3>Conversational Memory</h3>
+          <p>Fine-tuned LLM (Llama 3 / Claude 3.5) with Pinecone vector memory for long-term emotional context tracking.</p>
+        </div>
+        <div class="card">
+          <h3>Biometric Sync Engine</h3>
+          <p>Terra API / Vital API integrating Apple Watch, Garmin, Fitbit, and TimescaleDB for time-series metrics.</p>
+        </div>
+        <div class="card">
+          <h3>E-Commerce & Wallets</h3>
+          <p>Direct API webhooks with Tata 1mg, MedPlus, and Razorpay automated wallet debit integration.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 6: Business Model -->
+    <section class="slide">
+      <h2>Business Model & Monetization</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>B2C Subscription</h3>
+          <p><strong>$29 - $79 / month</strong> paid by family members for voice cloning, daily monitoring, and escalation alerts.</p>
+        </div>
+        <div class="card">
+          <h3>E-Pharmacy Margin</h3>
+          <p><strong>5% - 12% revenue share</strong> on automated refill orders generated for partner e-pharmacy platforms.</p>
+        </div>
+        <div class="card">
+          <h3>B2B2C Enterprise</h3>
+          <p>Licensing to hospitals, chronic care clinics, and insurers to lower re-admission rates.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 7: Regulatory & Safety -->
+    <section class="slide">
+      <h2>Compliance, Privacy & Guardrails</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>🔒 Data Protection & Privacy</h3>
+          <p>Compliant with DPDP Act 2023, ABDM standards (India), and HIPAA guidelines for protected health information.</p>
+        </div>
+        <div class="card">
+          <h3>🎙️ Voice Clone Consent</h3>
+          <p>Multi-factor verification and explicit authorization required before cloning any family member's voice.</p>
+        </div>
+        <div class="card">
+          <h3>🛡️ Medical Guardrails</h3>
+          <p>Non-diagnostic assistant boundary. Prompts strictly prevent LLM from changing prescriptions or offering medical advice.</p>
+        </div>
+        <div class="card">
+          <h3>⚡ High Availability</h3>
+          <p>Redundant PSTN carriers and fail-safe human tele-operator dispatch fallback.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 8: Roadmap -->
+    <section class="slide">
+      <h2>Go-To-Market Roadmap</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Phase 1: Months 1-3</h3>
+          <p>PSTN Voice Agent MVP, Apple/Google Health sync, manual reorder notification setup.</p>
+        </div>
+        <div class="card">
+          <h3>Phase 2: Months 4-6</h3>
+          <p>ElevenLabs Custom Voice Cloning, Tata 1mg/MedPlus Auto-Wallet orders, Outlier Detection v1.</p>
+        </div>
+        <div class="card">
+          <h3>Phase 3: Months 7-12</h3>
+          <p>ABDM EHR integration, hospital clinical trials, regional dialect voice expansion.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <button class="btn" id="prev-btn" onclick="changeSlide(-1)">← Previous</button>
+    <span style="color: var(--text-muted); font-size: 0.85rem;">Use ⬅️ / ➡️ keys to navigate</span>
+    <button class="btn" id="next-btn" onclick="changeSlide(1)">Next →</button>
+  </footer>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('slide-counter');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+
+    function updateDeck() {
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+      });
+      counter.textContent = `Slide ${currentSlide + 1} of${slides.length}`;
+      prevBtn.disabled = currentSlide === 0;
+      nextBtn.disabled = currentSlide === slides.length - 1;
+    }
+
+    function changeSlide(direction) {
+      if (currentSlide + direction >= 0 && currentSlide + direction < slides.length) {
+        currentSlide += direction;
+        updateDeck();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') changeSlide(1);
+      if (e.key === 'ArrowLeft') changeSlide(-1);
+    });
+
+    updateDeck();
+  </script>
+</body>
+</html>
